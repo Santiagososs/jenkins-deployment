@@ -18,3 +18,8 @@ que está comentado, assim quando ele criar os arquivos de volume do jenkins no 
 caso você vá utilizar algum volume de outro lugar, após jogar os arquivos no pvc e rodar o deployment, você deverá utilizar a parte que não consta com 
 comentário, pois assim ele vai rodar o container como usuário root, logo todos os arquivos de volume poderão ser iniciados normalmente, há um problema de permissionamento que ocorre caso você não utilize esse bloco de código, digamos que o seu volume no pvc não está atribuido ao usuário do jenkins mas sim a um user root ou outro, logo o jenkins vai acabar quebrando e essa foi a forma na qual achei para contornar.
 <h4>
+
+  
+<h2>Utilizando os arquivos no seu cluster!<h2>
+  <h4>1. kubectl apply -f service-account.yaml -n seu-namespace<h4>
+    <h5>O yaml da service account deve ser sempre o primeiro pois ele dará as devidas permissões para o jenkins no nosso cluster<h5>
