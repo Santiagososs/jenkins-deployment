@@ -21,5 +21,5 @@ comentário, pois assim ele vai rodar o container como usuário root, logo todos
 
   
 <h2>Utilizando os arquivos no seu cluster!<h2>
-  <h4>1. kubectl apply -f service-account.yaml -n seu-namespace<h4>
+  <h4>1 --> kubectl apply -f service-account.yaml -n seu-namespace<h4>
     <h5>O yaml da service account deve ser sempre o primeiro pois ele dará as devidas permissões para o jenkins no nosso cluster<h5>
