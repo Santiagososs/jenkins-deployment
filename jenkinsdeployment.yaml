@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deployment
+  namespace: tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      serviceAccountName: jenkins-admin
+      # Caso você esteja utilizando algum volume pré estabelecido utilize esse bloco de securityContext (Explicação no ReadME)
+      securityContext:
+            runAsUser: 0
+      # Caso você não esteja utilizando algum volume pré estabelecido utilize esse bloco de securityContext (Explicação no ReadME)
+      # securityContext:
+      #       fsGroup: 1000
+      #       runAsUser: 1000
+      containers:
+        - name: jenkins
+          image: jenkins/jenkins:lts
+          resources:
+            limits:
+              memory: "8Gi"
+              cpu: "2000m"
+            requests:
+              memory: "4Gi"
+              cpu: "1000m"
+          ports:
+            - name: httpport
+              containerPort: 8080
+            - name: jnlpport
+              containerPort: 50000
+          volumeMounts:
+            - name: jenkins-data
+              mountPath: /var/jenkins_home         
+      volumes:
+        - name: jenkins-data
+          persistentVolumeClaim:
+              claimName: jenkins-pvc
+
+#Simples deployment do jenkins consumindo um pvc onde será armazenado nosso volume

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkinshttp
+  namespace: jenkins-ns  
+spec:
+  selector:
+    name: jenkinshttp
+  ports:
+  - port: 8080
+    targetPort: 8080
+
+#Aqui criamos um service no qual será consumido pelo ingress.
