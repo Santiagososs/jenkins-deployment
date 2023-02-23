@@ -34,7 +34,7 @@ comentário, pois assim ele vai rodar o container como usuário root, logo todos
   <h3>6 --> kubectl apply -f ingress.yaml -n seu-namespace<h3>
     <h5>  O yaml do ingress irá consumir o nosso service no qual aponta para a porta do nosso pod, logo supondo que teremos um dns configurado para esse cluster, ao substituir o mesmo no yaml onde fica a linha "host", a aplicação irá ser hosteada normalmente no dns.<h5>
  
-<h4>   
+<h2>   
 Caso todos esses passos tenham sido seguidos e funcionado corretamente, o seu Jenkins está pronto para ser utilizado!
 Quaisquer sugestões e melhorias, fiquem a vontade para issues ou pull requests!
-<h4>
+<h2>
