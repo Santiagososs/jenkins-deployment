@@ -21,5 +21,20 @@ comentário, pois assim ele vai rodar o container como usuário root, logo todos
 
   
 <h2>Utilizando os arquivos no seu cluster!<h2>
-  <h4>1 --> kubectl apply -f service-account.yaml -n seu-namespace<h4>
-    <h5>O yaml da service account deve ser sempre o primeiro pois ele dará as devidas permissões para o jenkins no nosso cluster<h5>
+  <h3>1 --> kubectl apply -f service-account.yaml -n seu-namespace<h3>
+    <h5>  O yaml da service account deve ser sempre o primeiro pois ele dará as devidas permissões para o jenkins no nosso cluster<h5>
+  <h3>2 --> kubectl apply -f storage-account.yaml -n seu-namespace<h3>
+    <h5>  O yaml da storage class é o carinha no qual vamos linkar o nosso pvc, assim tendo nossa perssistencia de dados garantida<h5>
+  <h3>3 --> kubectl apply -f pvc.yaml -n seu-namespace<h3>
+    <h5>  O yaml do pvc vai gerar o nosso pvc, (ora bolas quem diria...) com ele poderemos tanto disponibilizar arquivos de volume existentes como ter acesso aos criados pelo jenkins<h5>
+  <h3>4 --> kubectl apply -f jenkinsdeployment.yaml -n seu-namespace<h3>
+    <h5>  O yaml do deployment irá finalmente criar nosso pod do jenkins, caso você não tenha definido nenhum volume, o jenkins criará todos e startará normalmente, caso tenha jogado arquivos de um volume já existente no pvc, o jenkins irá ler os mesmos, carregar e iniciar<h5>
+  <h3>5 --> kubectl apply -f service.yaml -n seu-namespace<h3>
+    <h5 >O yaml do Service vai fazer com que tenhamos o service consumindo a porta 8080 do nosso pod do jenkins, assim consumiremos esse service no nosso ingress<h5>
+  <h3>6 --> kubectl apply -f ingress.yaml -n seu-namespace<h3>
+    <h5>  O yaml do ingress irá consumir o nosso service no qual aponta para a porta do nosso pod, logo supondo que teremos um dns configurado para esse cluster, ao substituir o mesmo no yaml onde fica a linha "host", a aplicação irá ser hosteada normalmente no dns.<h5>
+ 
+<h4>   
+Caso todos esses passos tenham sido seguidos e funcionado corretamente, o seu Jenkins está pronto para ser utilizado!
+Quaisquer sugestões e melhorias, fiquem a vontade para issues ou pull requests!
+<h4>
