@@ -38,5 +38,6 @@ comentário, pois assim ele vai rodar o container como usuário root, logo todos
 Caso todos esses passos tenham sido seguidos e funcionado corretamente, o seu Jenkins está pronto para ser utilizado!
 Quaisquer sugestões e melhorias, fiquem a vontade para issues ou pull requests!
 <h2>
+  
 ![image](https://user-images.githubusercontent.com/70164638/220813883-5e369ea5-7c70-4916-b51c-91b408342bda.png)
 
